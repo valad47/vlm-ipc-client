@@ -44,7 +44,7 @@ int vlm_recv(lua_State *L) {
         handle = data + length;
     }
     length += received;
-    if(received < 0)
+    if(length == 0 && received < 0)
     luaL_error(L, "Failed to receive data: %s", strerror(errno));
     if(length) lua_pushlstring(L, data, length);
     else lua_pushnil(L);
